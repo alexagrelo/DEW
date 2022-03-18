@@ -22,7 +22,7 @@
         {"id":2,"name":"GONZALO MULET FIGUERAS","department":"IT","control":1},
         {"id":3,"name":"FRANCISCO JOSE GRAÑA BARBERA","department":"IT","control":1},
         {"id":4,"name":"IRENE POMBO JORDA","department":"HR","control":0}];
-      EMPLOYEES.map(employee => {
+      EMPLOYEES.forEach(employee => {
       (employee.control === 0) ? 
         console.warn('El registro con id',employee.id,'puede estar corrupto.') : 
         alert(` id: ${employee.id} \n name: ${employee.name} \n department: ${employee.department}`);
