@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+
+    <title>Actividad 1: Manipulación del DOM</title>
+  </head>
+  <body>
+    <h1>Actividad 1: Manipulación del DOM</h1>
+
+    <h2>Alumno: Alejandro Alfonso García Agrelo</h2>
+    <h4>DAW2N - DEW - 2021-2022</h4>
+
+    <p>
+      En esta actividad mostraremos los datos de la variable employees en este
+      HTML como una tabla. Construye todos los elementos haciendo uso de
+      funciones js
+    </p>
+    <p>
+      En caso de que el campo de control sea 0, se debe mostrar el color de
+      fuente de esa fila en color rojo
+    </p>
+    <div id="table-container" class="container mt-4"></div>
+
+    <script>
+      const EMPLOYEES = [
+        { id: 1, name: "MIRIAM CASTIÑEIRA BREA", department: "IT", control: 1 },
+        { id: 2, name: "GONZALO MULET FIGUERAS", department: "IT", control: 1 },
+        {
+          id: 3,
+          name: "FRANCISCO JOSE GRAÑA BARBERA",
+          department: "IT",
+          control: 1,
+        },
+        { id: 4, name: "IRENE POMBO JORDA", department: "HR", control: 0 },
+      ];
+
+      // TABLA
+      const tabla = document.createElement("table");
+      const tableHead = document.createElement("thead");
+      const tableBody = document.createElement("tbody");
+
+      tabla.appendChild(tableHead);
+      tabla.appendChild(tableBody);
+
+      tabla.className = "table text-center table-success table-striped";
+
+      document.getElementById("table-container").appendChild(tabla);
+
+      // TABLE HEAD
+      const theadRow = document.createElement("tr");
+      const thId = document.createElement("th");
+      const textId = document.createTextNode("ID");
+      thId.appendChild(textId);
+
+      const thName = document.createElement("th");
+      const textName = document.createTextNode("Name");
+      thName.appendChild(textName);
+
+      thName.className = "text-left pl-5";
+
+      const thDepartment = document.createElement("th");
+      const textDepartment = document.createTextNode("Department");
+      thDepartment.appendChild(textDepartment);
+      const thControl = document.createElement("th");
+      const textControl = document.createTextNode("Control");
+      thControl.appendChild(textControl);
+
+      theadRow.appendChild(thId);
+      theadRow.appendChild(thName);
+      theadRow.appendChild(thDepartment);
+      theadRow.appendChild(thControl);
+
+      tableHead.appendChild(theadRow);
+
+      // TABLE BODY
+      EMPLOYEES.forEach(({ id, name, department, control }) => {
+        const tr = document.createElement("tr");
+
+        const tdId = document.createElement("td");
+        const tdIdText = document.createTextNode(id);
+        tdId.appendChild(tdIdText);
+        tdId.style.fontWeight = "700";
+
+        const tdName = document.createElement("td");
+        const tdNameText = document.createTextNode(name);
+        tdName.appendChild(tdNameText);
+
+        tdName.className = "text-left pl-5";
+
+        const tdDepartment = document.createElement("td");
+        const tdDepartmentText = document.createTextNode(department);
+        tdDepartment.appendChild(tdDepartmentText);
+
+        const tdControl = document.createElement("td");
+        const tdControlText = document.createTextNode(control);
+        tdControl.appendChild(tdControlText);
+
+        if (control === 0) tr.style.color = "#ff0000";
+
+        tr.appendChild(tdId);
+        tr.appendChild(tdName);
+        tr.appendChild(tdDepartment);
+        tr.appendChild(tdControl);
+
+        tableBody.appendChild(tr);
+      });
+
+    </script>
+  </body>
+</html>

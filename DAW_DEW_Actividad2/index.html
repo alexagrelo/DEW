@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <title>Actividad 2: jQuery + AJAX request + manipulación DOM</title>
+  </head>
+  <body>
+    <h1>Actividad 2: jQuery + AJAX request + manipulación DOM</h1>
+
+    <h2>Autor: ALEJANDRO ALFONSO GARCÍA AGRELO</h2>
+    <h4>DAW 2 N - DEW</h4>
+
+    <p>Con JQuery carga los datos del fichero hermano employees.json y construye una tabla mostrando los datos</p>
+    <p>Muestra en rojo y cursiva aquellos elementos con el campo de control igual a 0</p>
+    <div id="table-container" class="container mt-4"></div>
+
+    <script>
+      
+      // Variables
+      const divTable = $("#table-container");
+
+      // Creating an XMLHttpRequest object
+      const xhttp = new XMLHttpRequest();
+
+      // Defining a callback function
+      xhttp.onload = function() {
+        if(this.readyState == 4 && this.status == 200) {
+          // Convertir textResponse en un objeto JS
+          const EMPLOYEES = JSON.parse(this.responseText);
+
+          // Cargo el html como texto en una variable
+          let contenido = '';
+
+          // Table Head
+          contenido = ` 
+            <table class="table text-center table-success table-striped">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th class="text-left pl-5">Name</th>
+                  <th>Department</th>
+                  <th>Control</th>
+                </tr>
+              </thead>
+              <tbody>`
+          ;
+
+          // Table Body
+          EMPLOYEES.forEach( ({ id, name, department, control }) => {
+
+            contenido += (control=== 0) ?
+              `
+              <tr class="text-danger font-italic">
+                <td class="fw-bold">${id}</td>
+                <td class="text-left pl-5">${name}</td>
+                <td>${department}</td>
+                <td>${control}</td>
+              </tr>
+              `
+              :           
+              
+              `
+                <tr >
+                  <td class="fw-bold">${id}</td>
+                  <td class="text-left pl-5">${name}</td>
+                  <td>${department}</td>
+                  <td>${control}</td>
+                </tr>
+              `
+              ;
+          });
+
+          contenido += `</tbody></table>`;
+          
+          // Table Show
+          divTable.html(contenido)
+
+        } 
+      }
+
+      // Sending a request
+      xhttp.open("GET", "./employees.json");
+      xhttp.send();
+
+    </script>
+
+  </body>
+</html>
