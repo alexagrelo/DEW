@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="main.js"></script>
     <title>Activity 2: Looping through an array, calculating operations and writing their result in the document.</title>
 </head>
 <body>
@@ -18,24 +19,26 @@
                 <ul>
                     <li>sum:
                         <pre>{operation: "+", data: [1, 2, 3]} // result: 6</pre>
+                        <p>{sum([1, 2, 3])}</p>
                     </li>
-                    <li>multiplication:
+                    <li id="mult">multiplication:
                         <pre>{operation: "*", data: [1, 2, 3]} // result: 6</pre>
                     </li>
                 </ul>
             </li>
             <li>Arrays:
                 <ul>
-                    <li>
+                    <li id="add">
                         add elements
                         <pre>{operation: "push", data: [[1, 2, 3], 4, 5]} // result: [1, 2, 3, 4, 5]</pre>
+                        
                     </li>
-                    <li>
+                    <li id="extract">
                         extract elements
                         <pre>{operation: "filter", data: [[1, 2, 3, 4, 5], 2, 5]} // result: [1, 3, 4, 5]</pre>
                     </li>
                     
-                    <li>
+                    <li id="concatenate">
                         concatenate arrays:
                         <pre>{operation: "merge", data: [[1, 2, 3], [4, 5], [6]]} // result: [1, 2, 3, 4, 5, 6]</pre>
                     </li>
@@ -69,6 +72,7 @@
             [1, 2, 3, 4, 5, 6, 7]
         </pre>
     </p>
+    <p id="results"></p>
     <script src="main.js"></script>
 </body>
 </html>
