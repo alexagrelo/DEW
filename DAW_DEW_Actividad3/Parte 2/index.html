@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>Actividad 3: Formularios y click event</title>
+  </head>
+  <body>
+    <!-- ENUNCIADO -->
+    <div class="container">
+      <h1>Actividad 3: Formularios y click event</h1>
+      <p>
+        Parte 2: Inserta un formulario con 2 campos ("Filas" y "Columnas") y un
+        botón ("Generar tabla"). Cuando se cliquee el botón deberá:
+      </p>
+      <ol>
+        <li>
+          Añadir una tabla con tantas filas y columnas como los campos "Filas" y
+          "Columnas" indiquen
+        </li>
+        <li>
+          Cada celda de la tabla debe contener un texto como: "Row: X, Col: Y",
+          siendo X e Y los valores posicionales de dicha celda
+        </li>
+      </ol>
+      <p>La parte 2 vale 1 punto</p>
+      <p>
+        NOTA: Podemos utilizar la clase URL o el método Regex para capturar las
+        variables GET, en caso de hacerlo usando un formulario
+      </p>
+    </div>
+    <!-- FIN ENUNCIADO -->
+    <!-- DESARROLLO -->
+    <div class="container">
+      <form id="tableForm" action="table.html">
+        <h2>GARCÍA AGRELO, ALEJANDRO ALFONSO - DAW2N - DEW</h2>
+        <h3 class="text-success">
+          Para crear la tabla, las Filas deben estar entre 1 y 50 y las Columnas
+          entre 1 y 20.
+        </h3>
+        <div class="mb-3">
+          <label for="rows" class="form-label">Filas</label>
+          <input
+            type="number"
+            name="rows"
+            class="form-control"
+            id="rows"
+            min="1"
+            max="50"
+            aria-describedby="Número de filas"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="columns" class="form-label">Columnas</label>
+          <input
+            type="number"
+            name="columns"
+            class="form-control"
+            id="columns"
+            min="1"
+            max="20"
+            aria-describedby="Número de columnas"
+            required
+          />
+        </div>
+        <div class="mb-4">
+          <button type="submit" class="btn btn-outline-success" id="btnSubmit">
+            CREAR TABLA
+          </button>
+        </div>
+      </form>
+    </div>
+    <!-- FIN DESARROLLO -->
+  </body>
+</html>
