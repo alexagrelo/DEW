@@ -1,10 +1,11 @@
 const submitForm = (evt) => {
     // Prevenir recarga de página completa
     evt.preventDefault();
-
-    // Recoger valores de los inputs
-    const AGE = parseInt(form[0].value);
-    const HEIGHT = parseInt(form[1].value);
+    
+    // Recoger valores de los inputs del formulario que genera el evento
+    const datos = Object.fromEntries(new FormData(evt.target));
+    const AGE = datos.age;
+    const HEIGHT = datos.height;
 
     // Eliminar Listado con id 'routeList' si existe
     const divRoute = document.getElementById('routeList');
@@ -59,8 +60,6 @@ const submitForm = (evt) => {
 
     divRoute.innerHTML = content;
 }
-
-
 
 // Recojo el evento al presionar el botón de crear ruta
 // y llamo a la función que filtra, crea y muestra la misma
