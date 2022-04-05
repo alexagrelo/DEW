@@ -1,5 +1,5 @@
 // Imagen que queremos comprobar si está en el servidor:
-const urlmagenAComprobar = 'changed.png';
+const urlmagenAComprobar = 'changed2.png';
 
 // Usando XMLHttpRequest y jQuery
 // Documentación XMLHttpRequest:
