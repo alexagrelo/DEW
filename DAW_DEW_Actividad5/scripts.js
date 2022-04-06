@@ -1,3 +1,6 @@
+let historyContent = '';
+let instantContent = '';
+let lastKeyPressed = '';
 
 class Window {
     constructor(title, width, height, x, y, content) {
@@ -15,11 +18,8 @@ class Window {
     }
 
     setContent(element) {
-        
         document.body.appendChild = element;
     }
-
-
 }
 
 class Calculator extends Window {
@@ -68,7 +68,7 @@ class Calculator extends Window {
 
         // Añado elementos
         content = `<div id="calculator">`;
-        //  Display
+
         content += `<div class="row" id="lineHist"> ${displayLineHist} </div>`;
         content += `<div class="row" id="lineInstant"> ${displayLineInstant} </div>`;
 
