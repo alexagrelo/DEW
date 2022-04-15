@@ -4,8 +4,17 @@ let lastButtonPressed = '';
 
 let existsOperator = false;
 
+let options = {
+    title: '',
+    width: '400px',
+    height: '520px',
+    x: '200px',
+    y: '50px',
+    content : ''
+}
+
 class Window {
-    constructor(title, width, height, x, y, content) {
+    constructor({title, width, height, x, y, content}) {
         this.title = title;
         this.width = width;
         this.height = height;
@@ -138,8 +147,8 @@ const buildCalculator = () => {
 }
 
 // Instancio el objeto calculadora y le asigno los valores indicados en el enunciado
-let newCalculator = new Calculator("", "400px", "520px", "200px", "50px", "");
-newCalculator.setTitle("Calculadora");
+let newCalculator = new Calculator(options);
+newCalculator.setTitle("Abracadabra");
 newCalculator.setContent(buildCalculator());
 // console.log('newCalculator', newCalculator);
 
@@ -151,4 +160,4 @@ calculatorDiv.style.marginLeft = newCalculator.x;
 calculatorDiv.style.marginTop = newCalculator.y;
 calculatorDiv.title = newCalculator.title;
 
-let titleDiv = document.getElementById("btnClear");
+let titleDiv = document.getElementById("titleDiv");
