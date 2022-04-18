@@ -1,0 +1,90 @@
+.row {
+    --bs-gutter-x: 0 !important;
+}
+
+#calculator {
+    background-color: #3d4543;
+    box-shadow: 2px 2px 2px 1px black;
+    border-radius: 10px;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+}
+
+#titleDiv {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    background-color: #3d94f6;
+    cursor: move;
+    user-select: none;
+}
+
+#titleText {
+    color: black;
+    font-size: 1.3rem;
+    font-weight: bold;
+    padding: .5rem 0;
+    text-align: center;
+    
+}
+
+#lineInstant,
+#lineHistory {
+    padding: 0 3rem;
+}
+
+#instantDisplay,
+#history {
+    background-color: lightgreen;
+    box-shadow: 2px 2px 2px 1px black inset;
+    margin-top: 1rem;
+    text-align: end;
+    width: 100%;
+}
+
+#instantDisplay {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.buttonsLine {
+    text-align: center;
+    padding: 1rem 1rem 0;
+}
+
+.buttonsLine button {
+    border: none;
+    border-radius: .5rem;
+    background-color: #636363;
+    color: white;
+    font-size: 1.2rem;
+    padding: .5rem 1rem;
+    width: 80%;
+    height: 100%;
+    font-size: 1.2rem;
+}
+
+.buttonsLine button:hover {
+    background-color: #858585;
+}
+
+#btnClear {
+    background-color: #ff0000;
+    width: 95%;
+}
+
+#btnClear:hover {
+    background-color: #ff4040;
+}
+
+#btnEqual {
+    background-color: #0000ff;
+    width: 95%;
+}
+
+#btnEqual:hover {
+    background-color: #4040ff;
+}
