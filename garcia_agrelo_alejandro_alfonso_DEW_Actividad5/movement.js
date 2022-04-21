@@ -1,7 +1,7 @@
 let titleDiv = document.getElementById("titleDiv");
 
 function onDrag({ movementX, movementY }) {
-    let minCoeficient = 0.80;
+    let minCoeficient = 1.2;
     let getStyle = window.getComputedStyle(calculatorDiv);
     let leftValue = Number(getStyle.left.replace('px', ''));
     let topValue = Number(getStyle.top.replace('px', ''));

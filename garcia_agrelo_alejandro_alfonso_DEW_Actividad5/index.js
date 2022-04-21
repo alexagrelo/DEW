@@ -65,7 +65,7 @@ class Button {
 const buildCalculator = () => {
     // Creo el display
     let displayLineHist = `<input class="display form-control" type="text" name="history" id="history" value="" readonly aria-describedby="Historial"/>`;
-    let displayLineInstant = `<input class="display form-control" type="number" name="instantDisplay" id="instantDisplay" value="0" readonly aria-describedby="Display"/>`;
+    let displayLineInstant = `<input class="display form-control" type="text" name="instantDisplay" id="instantDisplay" value="0" readonly aria-describedby="Display"/>`;
 
     // Creo botones por filas
 
