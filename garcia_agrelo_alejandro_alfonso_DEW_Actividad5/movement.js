@@ -1,7 +1,9 @@
 let titleDiv = document.getElementById("titleDiv");
 
 function onDrag({ movementX, movementY }) {
-    let minCoeficient = 1.2;
+    // minCoeficient variará según el navegador donde se ejecute la calculadora.
+    let minCoeficient = .8;
+    // TODO Detectar el navegador y ajustar el coeficiente.
     let getStyle = window.getComputedStyle(calculatorDiv);
     let leftValue = Number(getStyle.left.replace('px', ''));
     let topValue = Number(getStyle.top.replace('px', ''));

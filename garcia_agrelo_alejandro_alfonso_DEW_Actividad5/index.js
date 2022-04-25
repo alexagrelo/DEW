@@ -150,7 +150,6 @@ const buildCalculator = () => {
 let newCalculator = new Calculator(options);
 newCalculator.setTitle("Calculadora");
 newCalculator.setContent(buildCalculator());
-// console.log('newCalculator', newCalculator);
 
 document.body.innerHTML = newCalculator.getContent();
 let calculatorDiv = document.getElementById("calculator");
