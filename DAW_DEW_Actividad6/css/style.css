@@ -47,8 +47,8 @@ p {
 }
 
 video {
-    width: min(700px, 80%);
-    max-height: auto;
+    width: min(1024px, 100%);
+    max-height: 450px;
     object-fit: cover;
 }
 
