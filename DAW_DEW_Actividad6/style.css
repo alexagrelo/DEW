@@ -2,30 +2,52 @@
     --fuenteHeading: 'Roboto', sans-serif;
     --fuenteParrafos: 'Open Sans', sans-serif;
 
-    --primario: #1e71b8;
+    --primario: #fcb941;
     --secundario: #222a42;
-    --gris: #e1e1e1;
-    --blanco: #ffffff;
-    --negro: #000000;
+    --fondo: #272a30;
 }
 html {
     box-sizing: border-box;
-    font-size: 62.5%; /* 1 rem = 10px */    
+    /* font-size: 62.5%; 1 rem = 10px     */
 }
 *, *:before, *:after {
     box-sizing: inherit;
 }
 body {
     font-family: var(--fuenteParrafos);
-    font-size: 1.6rem;
+    /* font-size: 1.6rem; */
     line-height: 2;
 }
 
 /** Globales **/
-.contenedor {
-    width: min(90%, 120rem);
-    margin: 0 auto;
-}
 a {
     text-decoration: none;
+}
+
+h1 {
+    font-family: var(--fuenteHeading);
+    font-weight: 700;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+p {
+    font-family: var(--fuenteParrafos);
+}
+
+#logo_pag2 {
+    width: min(800px, 80%);
+    height: auto;
+    margin: 0 auto;
+}
+
+footer {
+    background-color: var(--fondo);
+    color: var(--primario);
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
 }
