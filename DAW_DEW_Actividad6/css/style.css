@@ -35,10 +35,21 @@ p {
     font-family: var(--fuenteParrafos);
 }
 
+.active {
+    color: var(--primario) !important;
+    text-decoration: underline;
+}
+
 #logo_pag2 {
     width: min(800px, 80%);
     height: auto;
     margin: 0 auto;
+}
+
+video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
 }
 
 footer {
@@ -55,7 +66,7 @@ footer {
 footer img {
     width: 50px;
     height: 50px;
-    margin: 5px auto 0;
+    margin: 10px auto 0;
     display: inline-flex;
     border-radius: 50%;
 }
