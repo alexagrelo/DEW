@@ -65,7 +65,7 @@ class Button {
 const buildCalculator = () => {
     // Creo el display
     let displayLineHist = `<input class="display form-control" type="text" name="history" id="history" value="" readonly aria-describedby="Historial"/>`;
-    let displayLineInstant = `<input class="display form-control" type="number" name="instantDisplay" id="instantDisplay" value="0" readonly aria-describedby="Display"/>`;
+    let displayLineInstant = `<input class="display form-control" type="text" name="instantDisplay" id="instantDisplay" value="0" readonly aria-describedby="Display"/>`;
 
     // Creo botones por filas
 
@@ -95,7 +95,7 @@ const buildCalculator = () => {
 
     // Añado elementos al contenido del elemento HTML
     // Ventana: contenedor principal
-    calcContent = `<div id="calculator">`;
+    calcContent = `<div id="calculator" class="draggable">`;
 
     calcContent += `<div class="row" id="titleDiv">
                         <div class="col" id="titleCol">
@@ -148,9 +148,8 @@ const buildCalculator = () => {
 
 // Instancio el objeto calculadora y le asigno los valores indicados en el enunciado
 let newCalculator = new Calculator(options);
-newCalculator.setTitle("Abracadabra");
+newCalculator.setTitle("Calculadora");
 newCalculator.setContent(buildCalculator());
-// console.log('newCalculator', newCalculator);
 
 document.body.innerHTML = newCalculator.getContent();
 let calculatorDiv = document.getElementById("calculator");
@@ -159,5 +158,3 @@ calculatorDiv.style.height = newCalculator.height;
 calculatorDiv.style.marginLeft = newCalculator.x;
 calculatorDiv.style.marginTop = newCalculator.y;
 calculatorDiv.title = newCalculator.title;
-
-let titleDiv = document.getElementById("titleDiv");

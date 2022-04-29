@@ -62,9 +62,8 @@ const roundPlaces = 15;
 
 // Get the operator object for a given operator ID
 const getOperator = (opID) => {
-    OPERATORS.forEach((op) => {
+    OPERATORS.forEach( op => {
         if (op.id === opID) return op;
-
     });
     return undefined;
 }
@@ -132,10 +131,10 @@ function applyOperator(operator, vals) {
     let result;
 
     if (vals.length === 1) {
-        result = operator.calc(parseFloat(valA));
+        result = operator.calc(Number(valA));
     } else {
         let valB = vals[1];
-        result = operator.calc(parseFloat(valB), parseFloat(valA));
+        result = operator.calc(Number(valB), Number(valA));
     }
 
     return result;
