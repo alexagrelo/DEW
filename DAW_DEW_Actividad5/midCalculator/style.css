@@ -11,15 +11,12 @@
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 9999;
 }
 
 #titleDiv {
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     background-color: #3d94f6;
-    cursor: move;
-    user-select: none;
 }
 
 #titleText {
@@ -31,13 +28,24 @@
     
 }
 
-#lineInstant,
-#lineHistory {
+#titleText img {
+    margin-left: 2rem;
+    color: #000000
+}
+
+/* #btnClose {
+    width: 10%;
+    font-size: 1.2rem;
+    background-color: #f24537;
+} */
+
+#lineHistory,
+#lineInstant {
     padding: 0 3rem;
 }
 
-#instantDisplay,
-#history {
+#history,
+#instantDisplay {
     background-color: lightgreen;
     box-shadow: 2px 2px 2px 1px black inset;
     margin-top: 1rem;
@@ -65,26 +73,9 @@
     width: 80%;
     height: 100%;
     font-size: 1.2rem;
+    /* padding: 3px 0; */
 }
 
 .buttonsLine button:hover {
     background-color: #858585;
-}
-
-#btnClear {
-    background-color: #ff0000;
-    width: 95%;
-}
-
-#btnClear:hover {
-    background-color: #ff4040;
-}
-
-#btnEqual {
-    background-color: #0000ff;
-    width: 95%;
-}
-
-#btnEqual:hover {
-    background-color: #4040ff;
 }

@@ -1,27 +1,17 @@
 
-const NUMBER_BUTTONS_ID = ['btn0', 'btn1', 'btn2', 'btn3', 'btn4', 'btn5', 'btn6', 'btn7', 'btn8', 'btn9'];
-const OPERATION_BUTTONS_IDS = ['btnSum', 'btnSub', 'btnMul', 'btnDiv'];
+const OPERATION_BUTTONS_VALUES = [' *', ' /'];
 
 let currentContentDiv = $("#instantDisplay");
 currentContent = currentContentDiv.text();
 let historyContentDiv = $("#history");
 
-
-let zeroFlag = false;
-
-
-// Event Handlers.
-
+// Event Handler.
 const handleButtonClick = (evt) => {
     let btn = evt.target;
-    let btnId = btn.id;
     let btnValue = btn.value;
-    // console.log('lastButtonPressed', lastButtonPressed);
-    // console.log('btnId', btnId);
 
-    if (btnId === 'btnClear') {
-        // console.log('btnClear entra en el if');
-        currentContent = '';
+    if (btnValue === ' C ') {
+        currentContent = '0';
         historyContent = '';
         lastButtonPressed = '';
         $("#instantDisplay").val(currentContent);
@@ -29,45 +19,42 @@ const handleButtonClick = (evt) => {
         return;
     }
 
-    if((currentContent === '0') && (btnId === 'btn0')) {
-        console.log('btn0 pulsado, no hace nada');
-        return;
-    }
+    if ((currentContent === '0') && (btnValue === 0)) { return }
 
-    if (currentContent === '' && btnId === 'btn0') {
-        console.log('btn0 pulsado, fija 0 en current, añade 0 a history');
+    if (currentContent === '' && btnValue === 0) {
         currentContent = '0';
         historyContent += '0';
+        lastButtonPressed = btnValue;
+        $("#instantDisplay").val(currentContent);
+        $("#history").val(historyContent);
         return;
     }
 
-    if((currentContent === '' || currentContent === '0' || lastButtonPressed === '=') && (btnValue === '.')) {
+    if ((currentContent === '' || currentContent === '0' || lastButtonPressed === '=') && (btnValue === '.')) {
         currentContent = '0.';
+        if (lastButtonPressed === '=') {
+            historyContent = '';
+        }
+
         (lastButtonPressed === '0') ? historyContent += '.' : historyContent += '0.';
+
+        lastButtonPressed = btnValue;
+        $("#instantDisplay").val(currentContent);
+        $("#history").val(historyContent);
         return;
     }
 
+    if (lastButtonPressed === '.' && btnValue === '.') { return }
 
-    if (lastButtonPressed === '=' && btnValue === '.') { return }
-
-    if(lastButtonPressed === '='){
-        // lastButtonPressed = btnValue;
-        // console.log('lastButtonPressed is =');
-        // console.log('currentContent', currentContent);
-        // console.log('historyContent antes', historyContent);
+    if (lastButtonPressed === '=') {
         historyContent = currentContent;
         currentContent = '';
-        // console.log('currentContent después', currentContent);
-        // console.log('historyContent después', historyContent);
-        if(!isNaN(btnValue)){
+        if (!isNaN(btnValue)) {
             historyContent = '';
         }
     }
-    
-    // if (isNaN(lastButtonPressed) &&  isNaN(btnValue) && lastButtonPressed !== '=') {
-    //     console.log('lastButtonPressed is NaN, es ', lastButtonPressed);
-    //     return ;
-    // }
+
+    if (btnValue === '.' && currentContent.includes('.')) { return }
 
     lastButtonPressed = btnValue;
 
@@ -81,17 +68,14 @@ const handleButtonClick = (evt) => {
         historyContent += btnValue;
 
     } else {
-        console.log('btnValue is not a number');
-        console.log('historyContent typeOf', typeof historyContent);
         historyContent = String(historyContent);
-        if(!isNaN(historyContent.substring(historyContent.length - 2)) || historyContent === ''){
-            console.log('entra en el if');
-            switch (btnId) {
-                case 'btnEqual':
+        if (!isNaN(historyContent.substring(historyContent.length - 2)) || historyContent === '') {
+            switch (btnValue) {
+                case '=':
                     currentContent = eval(historyContent);
                     currentContent = currentContent * 10 / 10;
                     break;
-                case 'btnDot':
+                case '.':
                     console.log('btnDot pulsado');
                     currentContent += '.';
                     historyContent += '.';
@@ -101,33 +85,88 @@ const handleButtonClick = (evt) => {
                     historyContent += btnValue;
                     break;
             }
-        } 
+        }
     }
 
-    while(historyContent.startsWith('00')){
+    while (historyContent.startsWith('00')) {
         historyContent = historyContent.substring(1);
+    }
+
+    if (historyContent.startsWith('0') && !isNaN(historyContent[1]) && historyContent[1] !== '.') {
+        historyContent = historyContent.substring(1);
+    }
+
+    if (OPERATION_BUTTONS_VALUES.includes(historyContent.substring(0, 2))) {
+        historyContent = historyContent.substring(3);
+    }
+
+    if (currentContent.length >= 18) {
+        let splittedHistory = historyContent.split(' ');
+        let realCurrentValue = splittedHistory[splittedHistory.length - 1];
+        currentContent = currentContent.substring(0, 16).concat('e').concat(realCurrentValue.length - 15);
     }
 
     $("#instantDisplay").val(currentContent);
     $("#history").val(historyContent);
-    console.log('historyContent', historyContent);
-    console.log('currentContent', currentContent);
 }
 
-// const handleTitleDivMousedown = (evt) => {
-//     console.log('2');
-//     console.log('titleDivKeydown', evt);
-
-// }
-
-// const handleTitleDivMouseup = (evt) => {
-//     console.log('3');
-//     console.log('titleDivMouseup', evt);
-
-// }
-
-
-// $("#titleDiv").on("mousedown", (e) => { handleTitleDivMousedown(e) });
-// $("#titleDiv").on("mouseup", (e) => { handleTitleDivMouseup(e) });
+// Eventos de ratón
 $("button").click((e) => { handleButtonClick(e) });
-
+// Eventos de teclado
+document.onkeydown = (e) => {
+    switch (e.key) {
+        case '0':
+            handleButtonClick({ target: { value: '0' } });
+            break;
+        case '1':
+            handleButtonClick({ target: { value: '1' } });
+            break;
+        case '2':
+            handleButtonClick({ target: { value: '2' } });
+            break;
+        case '3':
+            handleButtonClick({ target: { value: '3' } });
+            break;
+        case '4':
+            handleButtonClick({ target: { value: '4' } });
+            break;
+        case '5':
+            handleButtonClick({ target: { value: '5' } });
+            break;
+        case '6':
+            handleButtonClick({ target: { value: '6' } });
+            break;
+        case '7':
+            handleButtonClick({ target: { value: '7' } });
+            break;
+        case '8':
+            handleButtonClick({ target: { value: '8' } });
+            break;
+        case '9':
+            handleButtonClick({ target: { value: '9' } });
+            break;
+        case '+':
+            handleButtonClick({ target: { value: ' + ' } });
+            break;
+        case '-':
+            handleButtonClick({ target: { value: ' - ' } });
+            break;
+        case '*':
+            handleButtonClick({ target: { value: ' * ' } });
+            break;
+        case '/':
+            handleButtonClick({ target: { value: ' / ' } });
+            break;
+        case '.':
+            handleButtonClick({ target: { value: '.' } });
+            break;
+        case 'Enter':
+            handleButtonClick({ target: { value: '=' } });
+            break;
+        case 'Backspace':
+            handleButtonClick({ target: { value: ' C ' } });
+            break;
+        default:
+            break;
+    }
+}

@@ -19,6 +19,7 @@
     border-top-right-radius: 10px;
     background-color: #3d94f6;
     cursor: move;
+    user-select: none;
 }
 
 #titleText {
@@ -87,4 +88,3 @@
 #btnEqual:hover {
     background-color: #4040ff;
 }
-
