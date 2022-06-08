@@ -2,7 +2,6 @@ class Window {
     constructor(options, content, title) {
         if (options.width && options.height && options.posX && options.posY) {
             console.log(`Window created at ${options.posX}, ${options.posY} with ${options.width}x${options.height}`);
-            // hideErrorMessage();
             this.width = options.width;
             this.height = options.height;
             this.posX = options.posX;
@@ -10,9 +9,8 @@ class Window {
             this.title = title;
             this.content = content;            
         } else {
-            console.log(`Window NOT created at ${options.posX}, ${options.posY} with ${options.width}x${options.height}`);
-            console.log('Error: Window constructor: invalid options');
-            // showErrorMessage();
+            console.error(`Window NOT created at ${options.posX}, ${options.posY} with ${options.width}x${options.height}`);
+            console.error('Error: Window constructor: invalid options');
         }
 
     }
@@ -42,7 +40,7 @@ class Image extends Window {
 }
 
 const showErrorMessage = (message) => {
-    console.log('message ->', message);
+    // console.log('message ->', message);
     const errorDiv = document.getElementById("errorDiv");
     errorDiv.classList.remove("oculto");
     errorDiv.classList.add("visible");
@@ -50,15 +48,13 @@ const showErrorMessage = (message) => {
 }
 
 const hideErrorMessage = () => {
-    console.log('entra por hideErrorMessage');
+    // console.log('entra por hideErrorMessage');
     const errorDiv = document.getElementById("errorDiv");
     errorDiv.classList.remove("visible");
     errorDiv.classList.add("oculto");
 }
 
 const buildImage = (title, src) => {
-    // console.log('entra por buildImage');
-
     // Añado elementos al contenido del elemento HTML
     // Ventana: contenedor principal
     imgWindowContent = `<div id="imageDiv">`;
@@ -86,7 +82,7 @@ const btnClickHandler = (event) => {
         url: 'img/' + fileName,
         type: 'HEAD',
         error: () => {
-            console.log('entra por error');
+            // console.log('entra por error');
             showErrorMessage(`No existe el archivo ${fileName}`);
             console.error(`No existe el archivo ${fileName}`);
             let imgWindow = new Image(
@@ -102,7 +98,7 @@ const btnClickHandler = (event) => {
             contenedor.innerHTML = imgWindow.getContent();
         },
         success: () => {
-            console.log('entra por success');
+            // console.log('entra por success');
             if (fileName !== "" && fileName !== undefined) {
                 hideErrorMessage();
                 let imgWindow = new Image(
@@ -120,7 +116,7 @@ const btnClickHandler = (event) => {
                 // console.log(imgWindow.getTitle(), 'titulo');
                 // console.log(imgWindow.getContent(), 'contenido');
             } else {
-                console.log('entra por else del success');
+                // console.log('entra por else del success');
                 let imgWindow = new Image(
                     {
                         width: "400",
@@ -132,11 +128,11 @@ const btnClickHandler = (event) => {
                 imgWindow.setContent(buildImage(imgWindow.getTitle(), 'img/noimage.png'));
                 let contenedor = document.getElementById("container");
                 contenedor.innerHTML = imgWindow.getContent();
-                console.log(fileName, 'existe');
-                console.log(imgWindow.getTitle(), 'titulo');
-                console.log(imgWindow.getContent(), 'contenido');
-                showErrorMessage(`2 No existe el archivo ${fileName}`);
-                console.error(`2 No existe el archivo ${fileName}`);
+                // console.log(fileName, 'existe');
+                // console.log(imgWindow.getTitle(), 'titulo');
+                // console.log(imgWindow.getContent(), 'contenido');
+                showErrorMessage(`No existe el archivo ${fileName}`);
+                console.error(`No existe el archivo ${fileName}`);
             }
 
         }
