@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Examen</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./style.css">
+  </head>
+  <body>
+    <h1>Examen</h1>
+     <ul>
+        <li>Crea la clase <strong>Window:</strong> (1 punto)
+          <ul>
+            <li>Cuyo <strong>constructor</strong> dibujará una ventana en el body del html, recibirá un objeto llamado "options" con la siguiente especificación:
+              <ul>
+                <li>width: valor numérico que describe el ancho de la ventana en pixels.</li>
+                <li>height: valor numérico que describe el alto de la ventana en pixels.</li>
+                <li>posX: valor numérico que describe la posición de la ventana en pixels desde la izquierda (left).</li>
+                <li>posY: valor numérico que describe la posición de la ventana en pixels desde arriba (top).</li>
+              </ul>
+            </li>
+            <li>Añade el método <strong>setTitle</strong> que recibe un string y se lo añade a la cabecera de la ventana</li>
+            <li>Añade el método <strong>setContent</strong> que recibe un HTMLElement y se lo añade al cuerpo de la ventana</li>
+          </ul>
+        </li>
+        <li>Crea la clase <strong>Imagen:</strong> 
+          <ul>
+            <li>Imagen hereda de la clase "Window". (1 punto)</li>
+            <li>Cuyo <strong>constructor</strong> recibirá lo mismo que "window" pero también inserta una Imagen que:
+              <ul>
+                <li>Se encuentra en la carpeta img. (debes añadir tú las imagenes) (1 punto)</li>
+                <li>Tiene como título el nombre del archivo (1 punto)</li>
+              </ul>
+            </li>
+            <li>Añade el código necesario para que en el caso de que no exista la imagen
+              <ul>
+                <li>Muestre por consola un error indicando que no existe la imagen (1 punto)</li>
+                <li>Se cargue como content la imagen noimage.png (1 punto)</li>                
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>Inserta en el campo siguiente el nombre de una imagen junto a su extensión y al pinchar en el botón crear, deberá crear un objeto de la clase Imagen que cargue dicha imagen (3 puntos)</li>        
+        <li>Añade el código necesario para que en el caso de que se intente acceder a un campo vacío
+          <ul>
+            <li>Muestre por pantalla un error dentro de un div con fondo rojo (1 punto)</li>                    
+          </ul>
+        </li>
+        <div id="container"></div>
+        <div id="errorDiv">Error: se ha intentado acceder a un campo vacío</div>
+
+        <li><strong>NOTA: </strong>En caso de que la clase window permita hacer Drag, <strong>RESTARÁ 3 PUNTOS</strong> </li>
+      </ul>
+      <form action="">
+        <input type="text" id="fileName" name="fileName">
+        <button id="btnSendForm">Enviar</button>
+      </form>
+      <script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
+      <script src="./script.js"></script>
+  </body>
+</html>
