@@ -1,15 +1,18 @@
 class Window {
-    constructor(options, title, content) {
-        if (options.width && options.height && options.x && options.y) {
-            hideErrorMessage();
+    constructor(options, content, title) {
+        if (options.width && options.height && options.posX && options.posY) {
+            console.log(`Window created at ${options.posX}, ${options.posY} with ${options.width}x${options.height}`);
+            // hideErrorMessage();
             this.width = options.width;
             this.height = options.height;
-            this.x = options.x;
-            this.y = options.y;
+            this.posX = options.posX;
+            this.posY = options.posY;
             this.title = title;
             this.content = content;            
         } else {
-            showErrorMessage();
+            console.log(`Window NOT created at ${options.posX}, ${options.posY} with ${options.width}x${options.height}`);
+            console.log('Error: Window constructor: invalid options');
+            // showErrorMessage();
         }
 
     }
@@ -38,20 +41,23 @@ class Image extends Window {
     }
 }
 
-const showErrorMessage = (content) => {
+const showErrorMessage = (message) => {
+    console.log('message ->', message);
     const errorDiv = document.getElementById("errorDiv");
-    errorDiv.classList.remove("hidden");
+    errorDiv.classList.remove("oculto");
     errorDiv.classList.add("visible");
-    errorDiv.innerHTML = content;
+    errorDiv.innerHTML = message;
 }
 
 const hideErrorMessage = () => {
+    console.log('entra por hideErrorMessage');
     const errorDiv = document.getElementById("errorDiv");
     errorDiv.classList.remove("visible");
-    errorDiv.classList.add("hidden");
+    errorDiv.classList.add("oculto");
 }
 
 const buildImage = (title, src) => {
+    // console.log('entra por buildImage');
 
     // Añado elementos al contenido del elemento HTML
     // Ventana: contenedor principal
@@ -74,23 +80,31 @@ const buildImage = (title, src) => {
 
 
 const btnClickHandler = (event) => {
-
     event.preventDefault();
     let fileName = document.getElementById("fileName").value;
     $.ajax({
         url: 'img/' + fileName,
         type: 'HEAD',
         error: () => {
+            console.log('entra por error');
             showErrorMessage(`No existe el archivo ${fileName}`);
             console.error(`No existe el archivo ${fileName}`);
+            let imgWindow = new Image(
+                {
+                    width: "400",
+                    height: "520",
+                    posX: "200",
+                    posY: "50"
+                }, "", "");
+            imgWindow.setTitle('noimage.png');
+            imgWindow.setContent(buildImage(imgWindow.getTitle(), 'img/noimage.png'));
+            let contenedor = document.getElementById("container");
+            contenedor.innerHTML = imgWindow.getContent();
         },
         success: () => {
-            let container = document.getElementById("container");
+            console.log('entra por success');
             if (fileName !== "" && fileName !== undefined) {
                 hideErrorMessage();
-                if(container.hasChildNodes()) {
-
-                }
                 let imgWindow = new Image(
                     {
                         width: "400",
@@ -98,39 +112,38 @@ const btnClickHandler = (event) => {
                         posX: "200",
                         posY: "50"
                     }, "", "");
-                    imgWindow.setTitle(fileName);
-                    imgWindow.setContent(buildImage(imgWindow.getTitle(), 'img/' + fileName));
-                    let contenedor = document.getElementById("container");
-                    contenedor.innerHTML = imgWindow.getContent();
-                    console.log(fileName, 'existe');
-                    console.log(imgWindow.getTitle(), 'titulo');
-                    console.log(imgWindow.getContent(), 'contenido');
-                } else {
-                    let imgWindow = new Image(
-                        {
-                            width: "400",
-                            height: "520",
-                            posX: "200",
-                            posY: "50"
-                        }, "", "");
-                        imgWindow.setTitle('noimage.png');
-                        imgWindow.setContent(buildImage(imgWindow.getTitle(), 'img/noimage.png'));
-                        let contenedor = document.getElementById("container");
-                        contenedor.innerHTML = imgWindow.getContent();
-                        console.log(fileName, 'existe');
-                        console.log(imgWindow.getTitle(), 'titulo');
-                        console.log(imgWindow.getContent(), 'contenido');
-                    showErrorMessage(`No existe el archivo ${fileName}`);
-            console.error(`No existe el archivo ${fileName}`);
-                }
-
+                imgWindow.setTitle(fileName);
+                imgWindow.setContent(buildImage(imgWindow.getTitle(), 'img/' + fileName));
+                let contenedor = document.getElementById("container");
+                contenedor.innerHTML = imgWindow.getContent();
+                // console.log(fileName, 'existe');
+                // console.log(imgWindow.getTitle(), 'titulo');
+                // console.log(imgWindow.getContent(), 'contenido');
+            } else {
+                console.log('entra por else del success');
+                let imgWindow = new Image(
+                    {
+                        width: "400",
+                        height: "520",
+                        posX: "200",
+                        posY: "50"
+                    }, "", "");
+                imgWindow.setTitle('noimage.png');
+                imgWindow.setContent(buildImage(imgWindow.getTitle(), 'img/noimage.png'));
+                let contenedor = document.getElementById("container");
+                contenedor.innerHTML = imgWindow.getContent();
+                console.log(fileName, 'existe');
+                console.log(imgWindow.getTitle(), 'titulo');
+                console.log(imgWindow.getContent(), 'contenido');
+                showErrorMessage(`2 No existe el archivo ${fileName}`);
+                console.error(`2 No existe el archivo ${fileName}`);
             }
 
-        });
-    
-    }
-    
-    document.getElementById("btnSendForm").addEventListener("click", btnClickHandler);
-    
+        }
 
+    });
 
+}
+
+document.getElementById("btnSendForm").addEventListener("click", btnClickHandler);
+    
